@@ -20,9 +20,9 @@ classifiers = [
     "Private :: Do Not Upload",
 ]
 dependencies = [
-    "click",
-    "cryptography",
-    "pikepdf",
+    "click==8.3.2",
+    "cryptography==46.0.7",
+    "pikepdf==10.5.1",
 ]
 
 [project.scripts]
@@ -30,18 +30,18 @@ pdf-stego = "pdf_stego.cli:cli"
 
 [dependency-groups]
 nox = [
-    "nox-uv",
+    "nox-uv==0.7.1",
 ]
 test = [
-    "pytest",
-    "pytest-cov",
-    "pytest-randomly",
+    "pytest==9.0.3",
+    "pytest-cov==7.1.0",
+    "pytest-randomly==4.0.1",
 ]
 type_check = [
-    "mypy",
+    "mypy==1.20.0",
 ]
 lint = [
-    "ruff",
+    "ruff==0.15.10",
 ]
 
 [build-system]
