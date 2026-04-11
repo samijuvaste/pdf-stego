@@ -10,9 +10,6 @@ build/
 .venv/
 venv/
 
-# uv
-uv.lock
-
 # Nox
 .nox/
 
