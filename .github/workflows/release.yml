@@ -24,6 +24,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     needs: ci
     runs-on: ubuntu-latest
+    environment: pypi
     permissions:
       contents: write
     steps:
@@ -31,6 +32,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Create and push tag
         run: |
