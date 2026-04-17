@@ -1,12 +1,19 @@
 [project]
 name = "pdf-stego"
-version = "0.1.0"
-description = "PDF Steganography — Structure-based watermarking (Jiang et al., 2024)"
+dynamic = ["version"]
+description = "Structure-based PDF Steganography tool"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Sami Juvaste" },
+]
 requires-python = ">=3.10"
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -15,9 +22,8 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Topic :: Security",
     "Typing :: Typed",
-    # Prevent accidentally publishing private code to PyPI.
-    "Private :: Do Not Upload",
 ]
 dependencies = [
     "click==8.3.2",
@@ -27,6 +33,11 @@ dependencies = [
 
 [project.scripts]
 pdf-stego = "pdf_stego.cli:cli"
+
+[project.urls]
+Homepage = "https://github.com/samijuvaste/pdf-stego"
+Repository = "https://github.com/samijuvaste/pdf-stego"
+Issues = "https://github.com/samijuvaste/pdf-stego/issues"
 
 [dependency-groups]
 nox = [
@@ -45,8 +56,14 @@ lint = [
 ]
 
 [build-system]
-requires = ["uv_build>=0.10.0,<0.11.0"]
-build-backend = "uv_build"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/pdf_stego/_version.py"
 
 [tool.uv]
 default-groups = "all"
@@ -82,10 +99,7 @@ select = [
     "S",    # Bandit
 ]
 extend-ignore = [
-    "RUF005",
-    "RUF012",
     "PLR0913",
-    "PLR2004",
 ]
 unfixable = [
     # Don't remove unused imports automatically — editors may delete them mid-edit.

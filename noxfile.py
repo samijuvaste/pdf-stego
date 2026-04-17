@@ -21,9 +21,7 @@ def test(s: Session) -> None:
     )
 
 
-# For some sessions, set venv_backend="none" to simply execute scripts within the existing outer
-# uv-generated virtual environment, rather than have nox create a new one for each session.
-@session(venv_backend="none")
+@session(uv_only_groups=["lint"])
 @parametrize(
     "command",
     [
@@ -49,7 +47,7 @@ def fmt(s: Session, command: list[str]) -> None:
     s.run(*command)
 
 
-@session(venv_backend="none")
+@session(uv_only_groups=["lint"])
 @parametrize(
     "command",
     [
@@ -61,11 +59,11 @@ def lint(s: Session, command: list[str]) -> None:
     s.run(*command)
 
 
-@session(venv_backend="none")
+@session(uv_only_groups=["lint"])
 def lint_fix(s: Session) -> None:
     s.run("ruff", "check", ".", "--extend-fixable", "F401", "--fix")
 
 
-@session(venv_backend="none")
+@session(uv_only_groups=["type_check"])
 def type_check(s: Session) -> None:
     s.run("mypy", "src", "tests", "noxfile.py")
