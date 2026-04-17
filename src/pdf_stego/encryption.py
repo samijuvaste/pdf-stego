@@ -71,7 +71,7 @@ def _derive_aes_key(passphrase: str, salt: bytes) -> bytes:
         salt=salt,
         iterations=_AES_KDF_ITERATIONS,
     )
-    return kdf.derive(passphrase.encode("utf-8"))
+    return bytes(kdf.derive(passphrase.encode("utf-8")))
 
 
 def _aes_encrypt(data: bytes, passphrase: str) -> bytes:
@@ -79,7 +79,7 @@ def _aes_encrypt(data: bytes, passphrase: str) -> bytes:
     key = _derive_aes_key(passphrase, salt)
     nonce = os.urandom(_AES_NONCE_LEN)
     aesgcm = AESGCM(key)
-    ciphertext = aesgcm.encrypt(nonce, data, None)
+    ciphertext: bytes = aesgcm.encrypt(nonce, data, None)
     # Layout: salt || nonce || ciphertext+tag
     return salt + nonce + ciphertext
 
@@ -93,4 +93,4 @@ def _aes_decrypt(data: bytes, passphrase: str) -> bytes:
     ciphertext = data[_AES_SALT_LEN + _AES_NONCE_LEN :]
     key = _derive_aes_key(passphrase, salt)
     aesgcm = AESGCM(key)
-    return aesgcm.decrypt(nonce, ciphertext, None)
+    return bytes(aesgcm.decrypt(nonce, ciphertext, None))
