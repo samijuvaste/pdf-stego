@@ -35,5 +35,8 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
+# hatch-vcs generated
+src/pdf_stego/_version.py
+
 # Project specific
 *.pdf
