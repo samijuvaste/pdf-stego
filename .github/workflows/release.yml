@@ -24,7 +24,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     needs: ci
     runs-on: ubuntu-latest
-    environment: pypi
+    environment: tag
     permissions:
       contents: write
     steps:
