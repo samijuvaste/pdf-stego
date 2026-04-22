@@ -8,21 +8,16 @@ Embeds watermarks or arbitrary payloads as dictionary entries in Font Dictionary
 
 ## Installation
 
-### With uv
-
 ```bash
-uv sync
+pip install pdf-stego
 ```
 
-This installs the package in development mode with all dependencies.
-
-### With pip + venv
+### From source
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate   # Linux/macOS
-# .venv\Scripts\activate    # Windows
-pip install -e .
+git clone https://github.com/samijuvaste/pdf-stego.git
+cd pdf-stego
+uv sync
 ```
 
 ## Usage
