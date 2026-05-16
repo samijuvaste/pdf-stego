@@ -64,6 +64,6 @@ def lint_fix(s: Session) -> None:
     s.run("ruff", "check", ".", "--extend-fixable", "F401", "--fix")
 
 
-@session(uv_only_groups=["type_check"])
+@session(uv_groups=["type_check", "test"])
 def type_check(s: Session) -> None:
-    s.run("mypy", "src", "tests", "noxfile.py")
+    s.run("pyright", "src", "tests")

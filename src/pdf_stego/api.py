@@ -30,7 +30,7 @@ from pdf_stego.types import (
 def _resolve_watermark(watermark: WatermarkInput) -> bytes:
     """Convert a WatermarkInput to raw bytes."""
     match watermark:
-        case bytes() | bytearray():
+        case bytes():
             return bytes(watermark)
         case Path():
             return watermark.read_bytes()
