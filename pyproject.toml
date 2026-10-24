@@ -97,7 +97,7 @@ select = [
     "S",    # Bandit
 ]
 extend-ignore = [
-    "PLR0913",
+    "PLR0913", "PLR0917",
 ]
 unfixable = [
     # Don't remove unused imports automatically — editors may delete them mid-edit.

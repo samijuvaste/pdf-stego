@@ -50,6 +50,7 @@ pdf-stego info -i document.pdf
 ### Python API
 
 ```python
+from pathlib import Path
 from pdf_stego import embed, extract, info
 
 # Embed
@@ -59,7 +60,6 @@ embed("input.pdf", "output.pdf", "my watermark", mode="watermark")
 embed("input.pdf", "output.pdf", "secret", encryption="aes", encryption_key="passphrase")
 
 # Embed payload from a file
-from pathlib import Path
 embed("input.pdf", "output.pdf", Path("payload.txt"))
 
 # Extract (parameters must match embed)
